@@ -113,6 +113,10 @@ ENV/
 env.bak/
 venv.bak/
 
+# IDE
+.idea/
+python.iml
+
 # Spyder project settings
 .spyderproject
 .spyproject

@@ -38,11 +38,11 @@ def main():
       KEY_FILE, scopes=[SCOPE])
 
   # Build a client for the authorizedbuyersmarketplace API service.
-  realtimebidding = build('authorizedbuyersmarketplace', VERSION, credentials=credentials)
+  marketplace = build('authorizedbuyersmarketplace', VERSION, credentials=credentials)
 
   # Call the buyers.clients.list method to get a list of clients for the
   # given buyer.
-  request = realtimebidding.buyers().clients().list(parent=BUYER_NAME)
+  request = marketplace.buyers().clients().list(parent=BUYER_NAME)
 
   pprint.pprint(request.execute())
 

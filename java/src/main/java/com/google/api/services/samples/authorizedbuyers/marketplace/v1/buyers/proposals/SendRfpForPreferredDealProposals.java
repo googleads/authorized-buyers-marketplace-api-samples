@@ -51,7 +51,7 @@ import org.joda.time.format.ISODateTimeFormat;
 public class SendRfpForPreferredDealProposals {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
+    Long accountId = parsedArgs.getLong("account_id");
     String publisherProfileId = parsedArgs.getString(("publisher_profile_id"));
     String parent = String.format("buyers/%d", accountId);
     String publisherProfileName =
@@ -131,7 +131,7 @@ public class SendRfpForPreferredDealProposals {
                 + " publisher. This will be used to construct the name used as a path parameter for"
                 + " the proposals.sendRfp request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-d", "--buyer_contacts_display_name")
         .help("The display name of the buyer's contact, which will be visible to the publisher.")

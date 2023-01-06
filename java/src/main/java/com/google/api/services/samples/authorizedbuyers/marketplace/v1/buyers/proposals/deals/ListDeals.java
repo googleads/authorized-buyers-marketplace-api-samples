@@ -32,7 +32,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class ListDeals {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
+    Long accountId = parsedArgs.getLong("account_id");
     String proposalId = parsedArgs.getString("proposal_id");
     Integer pageSize = parsedArgs.getInt("page_size");
     String parent = String.format("buyers/%d/proposals/%s", accountId, proposalId);
@@ -83,7 +83,7 @@ public class ListDeals {
                 + " will be used to construct the parent used as a path parameter for the"
                 + " deals.list request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("--proposal_id")
         .help(

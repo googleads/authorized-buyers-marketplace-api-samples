@@ -35,7 +35,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class ListFinalizedDeals {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
+    Long accountId = parsedArgs.getLong("account_id");
     Integer pageSize = parsedArgs.getInt("page_size");
     String parentBidderName = String.format("bidders/%d", accountId);
     String pageToken = null;
@@ -86,7 +86,7 @@ public class ListFinalizedDeals {
                 + " retrieved. This will be used to construct the parent used as a path parameter"
                 + " for the finalizedDeals.list request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-f", "--filter")
         .help(

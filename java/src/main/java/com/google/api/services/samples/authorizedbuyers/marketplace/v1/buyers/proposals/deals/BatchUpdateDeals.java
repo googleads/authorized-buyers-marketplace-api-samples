@@ -49,8 +49,8 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class BatchUpdateDeals {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
-    List<String> dealIds = parsedArgs.getList("deal_ids");
+    Long accountId = parsedArgs.getLong("account_id");
+    List<Long> dealIds = parsedArgs.getList("deal_ids");
     String proposalId = parsedArgs.getString("proposal_id");
     String parent = String.format("buyers/%d/proposals/%s", accountId, proposalId);
     Long proposalRevision = parsedArgs.getLong("proposal_revision");
@@ -59,9 +59,9 @@ public class BatchUpdateDeals {
     List<UpdateDealRequest> updateDealRequests = new ArrayList<>();
 
     // Populate the request body based on the deals specified.
-    for (String dealId : dealIds) {
+    for (Long dealId : dealIds) {
       Deal deal = new Deal();
-      deal.setName(String.format("buyers/%d/proposals/%s/deals/%s", accountId, proposalId, dealId));
+      deal.setName(String.format("buyers/%d/proposals/%s/deals/%d", accountId, proposalId, dealId));
       deal.setProposalRevision(proposalRevision);
 
       CriteriaTargeting userListTargeting = new CriteriaTargeting();
@@ -118,7 +118,7 @@ public class BatchUpdateDeals {
                 + " parameter for the deals.batchUpdate request, and each deal name included in the"
                 + " request body.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-d", "--deal_ids")
         .help(
@@ -126,6 +126,7 @@ public class BatchUpdateDeals {
                 + " in a batch update operation. These will be used to construct the deal names"
                 + " included in the request body. Specify each client ID separated by a space.")
         .required(true)
+        .type(Long.class)
         .nargs("+");
     parser
         .addArgument("-p", "--proposal_id")

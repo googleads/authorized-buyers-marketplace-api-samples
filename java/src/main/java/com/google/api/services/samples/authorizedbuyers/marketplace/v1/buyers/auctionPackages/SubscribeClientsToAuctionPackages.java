@@ -32,10 +32,10 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class SubscribeClientsToAuctionPackages {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
-    String auctionPackageId = parsedArgs.getString("auction_package_id");
+    Long accountId = parsedArgs.getLong("account_id");
+    Long auctionPackageId = parsedArgs.getLong("auction_package_id");
     List<String> clientIds = parsedArgs.getList("client_ids");
-    String name = String.format("buyers/%d/auctionPackages/%s", accountId, auctionPackageId);
+    String name = String.format("buyers/%d/auctionPackages/%d", accountId, auctionPackageId);
 
     AuctionPackage auctionPackage = null;
 
@@ -77,14 +77,15 @@ public class SubscribeClientsToAuctionPackages {
                 + " that will be included in the body of the auctionPackages.subscribeClients"
                 + " request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("--auction_package_id")
         .help(
             "The resource ID of the buyers.auctionPackages resource that the buyer is "
                 + "subscribing their clients to. This will be used to construct the name used as a "
                 + "path parameter for the auctionPackages.subscribeClients request.")
-        .required(true);
+        .required(true)
+        .type(Long.class);
     parser
         .addArgument("--client_ids")
         .help(
@@ -93,7 +94,7 @@ public class SubscribeClientsToAuctionPackages {
                 + " included in the body of the auctionPackages.subscribeClients request. Specify"
                 + " each client ID separated by a space.")
         .required(true)
-        .type(Integer.class)
+        .type(Long.class)
         .nargs("+");
 
     Namespace parsedArgs = null;

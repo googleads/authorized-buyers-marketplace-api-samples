@@ -33,7 +33,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class GetPublisherProfiles {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
+    Long accountId = parsedArgs.getLong("account_id");
     String publisherProfileId = parsedArgs.getString("publisher_profile_id");
     String name = String.format("buyers/%d/publisherProfiles/%s", accountId, publisherProfileId);
 
@@ -65,7 +65,7 @@ public class GetPublisherProfiles {
                 + "is being accessed. This will be used to construct the parent used as a path "
                 + "parameter for the publisherProfiles.get request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-p", "--publisher_profile_id")
         .help(

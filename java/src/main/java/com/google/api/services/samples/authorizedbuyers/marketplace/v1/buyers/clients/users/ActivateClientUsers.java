@@ -38,10 +38,10 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class ActivateClientUsers {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
-    String clientId = parsedArgs.getString("client_id");
-    String clientUserId = parsedArgs.getString("client_user_id");
-    String name = String.format("buyers/%d/clients/%s/users/%s", accountId, clientId, clientUserId);
+    Long accountId = parsedArgs.getLong("account_id");
+    Long clientId = parsedArgs.getLong("client_id");
+    Long clientUserId = parsedArgs.getLong("client_user_id");
+    String name = String.format("buyers/%d/clients/%d/users/%d", accountId, clientId, clientUserId);
 
     ClientUser clientUser = null;
 
@@ -75,21 +75,23 @@ public class ActivateClientUsers {
                 + "This will be used to construct the name used as a path parameter for the "
                 + "users.activate request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-c", "--client_id")
         .help(
             "The resource ID of the buyers.clients resource under which the client user was"
                 + " created. This will be used to construct the name used as a path parameter for"
                 + " the users.activate request.")
-        .required(true);
+        .required(true)
+        .type(Long.class);
     parser
         .addArgument("-u", "--client_user_id")
         .help(
             "The resource ID of the buyers.clients.users resource that is being activated. "
                 + "This will be used to construct the name used as a path parameter for the "
                 + "users.activate request.")
-        .required(true);
+        .required(true)
+        .type(Long.class);
 
     Namespace parsedArgs = null;
     try {

@@ -31,9 +31,9 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class PatchClients {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
-    String clientId = parsedArgs.getString("client_id");
-    String name = String.format("buyers/%d/clients/%s", accountId, clientId);
+    Long accountId = parsedArgs.getLong("account_id");
+    Long clientId = parsedArgs.getLong("client_id");
+    String name = String.format("buyers/%d/clients/%d", accountId, clientId);
 
     Client update = new Client();
     update.setDisplayName(parsedArgs.getString("display_name"));
@@ -63,12 +63,12 @@ public class PatchClients {
         .addArgument("-a", "--account_id")
         .help("The resource ID of the buyers resource under which the client was created.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-c", "--client_id")
         .help("The resource ID of the buyers.clients resource under which the client was created.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-d", "--display_name")
         .help(

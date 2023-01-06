@@ -34,10 +34,10 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class UnsubscribeClientsFromAuctionPackages {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
-    String auctionPackageId = parsedArgs.getString("auction_package_id");
+    Long accountId = parsedArgs.getLong("account_id");
+    Long auctionPackageId = parsedArgs.getLong("auction_package_id");
     List<String> clientIds = parsedArgs.getList("client_ids");
-    String name = String.format("buyers/%d/auctionPackages/%s", accountId, auctionPackageId);
+    String name = String.format("buyers/%d/auctionPackages/%d", accountId, auctionPackageId);
 
     AuctionPackage auctionPackage = null;
 
@@ -79,14 +79,15 @@ public class UnsubscribeClientsFromAuctionPackages {
                 + " that will be included in the body of the auctionPackages.unsubscribeClients"
                 + " request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("--auction_package_id")
         .help(
             "The resource ID of the buyers.auctionPackages resource that the buyer is unsubscribing"
                 + " their clients from. This will be used to construct the name used as a path"
                 + " parameter for the auctionPackages.unsubscribeClients request.")
-        .required(true);
+        .required(true)
+        .type(Long.class);
     parser
         .addArgument("--client_ids")
         .help(
@@ -96,7 +97,7 @@ public class UnsubscribeClientsFromAuctionPackages {
                 + " auctionPackages.unsubscribeClients request. Specify each client ID separated by"
                 + " a space.")
         .required(true)
-        .type(Integer.class)
+        .type(Long.class)
         .nargs("+");
 
     Namespace parsedArgs = null;

@@ -35,9 +35,9 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class PauseFinalizedDeals {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
-    String dealId = parsedArgs.getString("deal_id");
-    String name = String.format("buyers/%d/finalizedDeals/%s", accountId, dealId);
+    Long accountId = parsedArgs.getLong("account_id");
+    Long dealId = parsedArgs.getLong("deal_id");
+    String name = String.format("buyers/%d/finalizedDeals/%d", accountId, dealId);
 
     FinalizedDeal finalizedDeal = null;
 
@@ -54,7 +54,7 @@ public class PauseFinalizedDeals {
     }
 
     System.out.printf(
-        "Paused finalized deal with ID \"%s\" for buyer account ID \"%d\":%n", dealId, accountId);
+        "Paused finalized deal with ID \"%d\" for buyer account ID \"%d\":%n", dealId, accountId);
     Utils.printFinalizedDeal(finalizedDeal);
   }
 
@@ -71,14 +71,15 @@ public class PauseFinalizedDeals {
                 + "This will be used to construct the parent used as a path parameter for the "
                 + "finalizedDeals.pause request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-d", "--deal_id")
         .help(
             "The resource ID of the buyers.finalizedDeals resource that is being paused. This "
                 + "will be used to construct the name used as a path parameter for the "
                 + "finalizedDeals.pause request.")
-        .required(true);
+        .required(true)
+        .type(Long.class);
 
     Namespace parsedArgs = null;
     try {

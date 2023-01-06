@@ -32,10 +32,10 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class ListClientUsers {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
-    Integer clientId = parsedArgs.getInt("client_id");
+    Long accountId = parsedArgs.getLong("account_id");
+    Long clientId = parsedArgs.getLong("client_id");
     Integer pageSize = parsedArgs.getInt("page_size");
-    String parentClientName = String.format("buyers/%d/clients/%s", accountId, clientId);
+    String parentClientName = String.format("buyers/%d/clients/%d", accountId, clientId);
     String pageToken = null;
 
     System.out.printf("Found client users for client with name \"%s\":%n", parentClientName);
@@ -83,7 +83,7 @@ public class ListClientUsers {
                 + "This will be used to construct the parent used as a path parameter for the "
                 + "users.list request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-c", "--client_id")
         .help(
@@ -91,7 +91,7 @@ public class ListClientUsers {
                 + " behalf of. This will be used to construct the parent used as a path parameter"
                 + " for the users.list request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-p", "--page_size")
         .help(

@@ -37,9 +37,9 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class SubscribeToAuctionPackages {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
-    String auctionPackageId = parsedArgs.getString("auction_package_id");
-    String name = String.format("buyers/%d/auctionPackages/%s", accountId, auctionPackageId);
+    Long accountId = parsedArgs.getLong("account_id");
+    Long auctionPackageId = parsedArgs.getLong("auction_package_id");
+    String name = String.format("buyers/%d/auctionPackages/%d", accountId, auctionPackageId);
 
     AuctionPackage auctionPackage = null;
 
@@ -74,14 +74,15 @@ public class SubscribeToAuctionPackages {
                 + " package. This will be used to construct the name used as a path parameter for"
                 + " the auctionPackages.subscribe request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("--auction_package_id")
         .help(
             "The resource ID of the buyers.auctionPackages resource that the buyer is subscribing"
                 + " to. This will be used to construct the name used as a path parameter for the"
                 + " auctionPackages.subscribe request.")
-        .required(true);
+        .required(true)
+        .type(Long.class);
 
     Namespace parsedArgs = null;
     try {

@@ -35,9 +35,9 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class ResumeFinalizedDeals {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
-    String dealId = parsedArgs.getString("deal_id");
-    String name = String.format("buyers/%d/finalizedDeals/%s", accountId, dealId);
+    Long accountId = parsedArgs.getLong("account_id");
+    Long dealId = parsedArgs.getLong("deal_id");
+    String name = String.format("buyers/%d/finalizedDeals/%d", accountId, dealId);
 
     FinalizedDeal finalizedDeal = null;
 
@@ -71,14 +71,15 @@ public class ResumeFinalizedDeals {
                 + "This will be used to construct the parent used as a path parameter for the "
                 + "finalizedDeals.resume request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-d", "--deal_id")
         .help(
             "The resource ID of the buyers.finalizedDeals resource that is being resumed. This "
                 + "will be used to construct the name used as a path parameter for the "
                 + "finalizedDeals.resume request.")
-        .required(true);
+        .required(true)
+        .type(Long.class);
 
     Namespace parsedArgs = null;
     try {

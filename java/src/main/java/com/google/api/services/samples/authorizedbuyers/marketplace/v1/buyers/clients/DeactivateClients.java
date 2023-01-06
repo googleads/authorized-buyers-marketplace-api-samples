@@ -33,9 +33,9 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class DeactivateClients {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
-    String clientId = parsedArgs.getString("client_id");
-    String name = String.format("buyers/%d/clients/%s", accountId, clientId);
+    Long accountId = parsedArgs.getLong("account_id");
+    Long clientId = parsedArgs.getLong("client_id");
+    String name = String.format("buyers/%d/clients/%d", accountId, clientId);
 
     Client client = null;
 
@@ -69,14 +69,15 @@ public class DeactivateClients {
                 + "will be used to construct the parent used as a path parameter for the "
                 + "clients.deactivate request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-c", "--client_id")
         .help(
             "The resource ID of the buyers.clients resource for which the client was created "
                 + "This will be used to construct the name used as a path parameter for the "
                 + "clients.deactivate request.")
-        .required(true);
+        .required(true)
+        .type(Long.class);
 
     Namespace parsedArgs = null;
     try {

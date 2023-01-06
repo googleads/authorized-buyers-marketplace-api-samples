@@ -37,10 +37,10 @@ import org.apache.commons.lang3.RandomUtils;
 public class CreateClientUsers {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
-    String clientId = parsedArgs.getString("client_id");
+    Long accountId = parsedArgs.getLong("account_id");
+    Long clientId = parsedArgs.getLong("client_id");
 
-    String parentClientName = String.format("buyers/%d/clients/%s", accountId, clientId);
+    String parentClientName = String.format("buyers/%d/clients/%d", accountId, clientId);
 
     ClientUser newClientUser = new ClientUser();
     newClientUser.setEmail(parsedArgs.getString("email"));
@@ -78,14 +78,15 @@ public class CreateClientUsers {
                 + " This will be used to construct the name used as a path parameter for the"
                 + " users.create request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-c", "--client_id")
         .help(
             "The resource ID of the buyers.clients resource under which the client user is to be"
                 + " created. This will be used to construct the name used as a path parameter for"
                 + " the users.create request.")
-        .required(true);
+        .required(true)
+        .type(Long.class);
     parser
         .addArgument("-e", "--email")
         .help(

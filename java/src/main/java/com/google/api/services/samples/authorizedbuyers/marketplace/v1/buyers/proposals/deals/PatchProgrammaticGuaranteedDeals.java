@@ -42,10 +42,10 @@ import org.joda.time.format.ISODateTimeFormat;
 public class PatchProgrammaticGuaranteedDeals {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
+    Long accountId = parsedArgs.getLong("account_id");
     String proposalId = parsedArgs.getString("proposal_id");
-    String dealId = parsedArgs.getString("deal_id");
-    String name = String.format("buyers/%d/proposals/%s/deals/%s", accountId, proposalId, dealId);
+    Long dealId = parsedArgs.getLong("deal_id");
+    String name = String.format("buyers/%d/proposals/%s/deals/%d", accountId, proposalId, dealId);
     Long proposalRevision = parsedArgs.getLong("proposal_revision");
 
     Deal patchedProgrammaticGuaranteedDeal = new Deal();
@@ -107,7 +107,7 @@ public class PatchProgrammaticGuaranteedDeals {
                 + "This will be used to construct the name used as a path parameter for the "
                 + "deals.patch request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-d", "--deal_id")
         .help(
@@ -115,7 +115,7 @@ public class PatchProgrammaticGuaranteedDeals {
                 + "This will be used to construct the name used as a path parameter for the "
                 + "deals.patch request.")
         .required(true)
-        .type(String.class);
+        .type(Long.class);
     parser
         .addArgument("-p", "--proposal_id")
         .help(

@@ -32,7 +32,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class AddNoteToProposals {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
+    Long accountId = parsedArgs.getLong("account_id");
     String proposalId = parsedArgs.getString(("proposal_id"));
     String proposalName = String.format("buyers/%d/proposals/%s", accountId, proposalId);
     String noteValue = parsedArgs.getString("note");
@@ -69,7 +69,7 @@ public class AddNoteToProposals {
                 + "accessed. This will be used to construct the proposal name used as a path "
                 + "parameter for the proposals.addNote request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-p", "--proposal_id")
         .help(

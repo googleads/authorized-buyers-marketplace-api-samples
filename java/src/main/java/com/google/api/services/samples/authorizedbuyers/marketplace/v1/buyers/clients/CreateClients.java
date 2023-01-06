@@ -31,7 +31,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class CreateClients {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
+    Long accountId = parsedArgs.getLong("account_id");
 
     String parentBuyerName = String.format("buyers/%d", accountId);
 
@@ -67,7 +67,7 @@ public class CreateClients {
         .addArgument("-a", "--account_id")
         .help("The resource ID of the buyers resource under which the client is to be created. ")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-d", "--display_name")
         .help(

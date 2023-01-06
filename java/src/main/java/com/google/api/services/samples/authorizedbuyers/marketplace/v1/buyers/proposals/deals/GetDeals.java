@@ -30,10 +30,10 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class GetDeals {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
+    Long accountId = parsedArgs.getLong("account_id");
     String proposalId = parsedArgs.getString("proposal_id");
-    String dealId = parsedArgs.getString("deal_id");
-    String name = String.format("buyers/%d/proposals/%s/deals/%s", accountId, proposalId, dealId);
+    Long dealId = parsedArgs.getLong("deal_id");
+    String name = String.format("buyers/%d/proposals/%s/deals/%d", accountId, proposalId, dealId);
 
     Deal deal = null;
 
@@ -61,14 +61,15 @@ public class GetDeals {
                 + "This will be used to construct the parent used as a path parameter for the "
                 + "deals.get request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-d", "--deal_id")
         .help(
             "The resource ID of the buyers.proposals.deals resource that is being retrieved. This"
                 + " will be used to construct the name used as a path parameter for the deals.get "
                 + "request.")
-        .required(true);
+        .required(true)
+        .type(Long.class);
     parser
         .addArgument("-p", "--proposal_id")
         .help(

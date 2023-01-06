@@ -30,7 +30,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class GetProposals {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
+    Long accountId = parsedArgs.getLong("account_id");
     String proposalId = parsedArgs.getString("proposal_id");
     String name = String.format("buyers/%d/proposals/%s", accountId, proposalId);
 
@@ -61,7 +61,7 @@ public class GetProposals {
                 + " This will be used to construct the parent used as a path parameter for the"
                 + " proposals.get request.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-p", "--proposal_id")
         .help(

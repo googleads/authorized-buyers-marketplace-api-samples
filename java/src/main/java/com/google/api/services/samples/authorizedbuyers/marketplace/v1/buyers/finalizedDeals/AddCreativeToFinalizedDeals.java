@@ -41,10 +41,10 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class AddCreativeToFinalizedDeals {
 
   public static void execute(AuthorizedBuyersMarketplace marketplaceClient, Namespace parsedArgs) {
-    Integer accountId = parsedArgs.getInt("account_id");
+    Long accountId = parsedArgs.getLong("account_id");
     String creativeId = parsedArgs.getString("creative_id");
-    String dealId = parsedArgs.getString("deal_id");
-    String name = String.format("buyers/%d/finalizedDeals/%s", accountId, dealId);
+    Long dealId = parsedArgs.getLong("deal_id");
+    String name = String.format("buyers/%d/finalizedDeals/%d", accountId, dealId);
     String creativeName = String.format("buyers/%d/creatives/%s", accountId, creativeId);
 
     AddCreativeRequest addCreativeRequest = new AddCreativeRequest();
@@ -84,7 +84,7 @@ public class AddCreativeToFinalizedDeals {
                 + " finalizedDeals.addCreative request, as well as the creative name included in"
                 + " the request body.")
         .required(true)
-        .type(Integer.class);
+        .type(Long.class);
     parser
         .addArgument("-c", "--creative_id")
         .help(
@@ -98,7 +98,8 @@ public class AddCreativeToFinalizedDeals {
             "The resource ID of the buyers.finalizedDeals resource that the creative is being "
                 + "added to. This will be used to construct the name used as a path parameter "
                 + "for the finalizedDeals.addCreative request.")
-        .required(true);
+        .required(true)
+        .type(Long.class);
 
     Namespace parsedArgs = null;
     try {

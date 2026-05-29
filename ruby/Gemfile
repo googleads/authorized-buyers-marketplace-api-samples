@@ -1,5 +1,0 @@
-source "https://rubygems.org"
-
-ruby "3.0.0"
-
-gem 'google-apis-authorizedbuyersmarketplace_v1', '~> 0.14.0'

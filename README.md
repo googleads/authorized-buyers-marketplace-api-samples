@@ -13,19 +13,20 @@ Pre-requisites
 Support
 -------
 
-- [Support forum](https://groups.google.com/forum/#!forum/google-doubleclick-ad-exchange-buyer-api)
-- Support alias: adxbuyerapi-support@google.com
-
-If you've found an error in this sample, please file an issue:
-https://github.com/googleads/authorized-buyers-rtb-api-samples/issues
+You can use the [issue tracker](https://github.com/googleads/authorized-buyers-marketplace-api-samples/issues)
+to report errors or file a feature request for samples included in this
+repository.
 
 Patches are encouraged, and may be submitted by forking this project and
 submitting a pull request through GitHub.
 
+For questions and support for the Authorized Buyers Marketplace API, use
+the [Authorized Buyers API contact form](https://support.google.com/authorizedbuyers/contact/contact_us_ab_api).
+
 License
 -------
 
-Copyright 2021 Google, Inc.
+Copyright 2021 Google LLC
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
 license agreements.  See the NOTICE file distributed with this work for

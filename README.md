@@ -1,30 +1,29 @@
-Authorized Buyers Marketplace API Samples
-============
+# Authorized Buyers Marketplace API Samples
 
-These code samples are organized by language, and run on the command line.
-Please refer to the **README.md** file in the directory corresponding to your
-desired language for installation instructions.
+These code samples are run on the command line.
+Please refer to the **README.md** file in the java directory for installation
+instructions.
 
-Pre-requisites
---------------
+## Prerequisites
 
 - [Marketplace API reference notes](https://developers.google.com/authorized-buyers/apis/marketplace/reference/rest)
 
-Support
--------
+## Support
 
 You can use the [issue tracker](https://github.com/googleads/authorized-buyers-marketplace-api-samples/issues)
 to report errors or file a feature request for samples included in this
 repository.
 
-Patches are encouraged, and may be submitted by forking this project and
-submitting a pull request through GitHub.
-
 For questions and support for the Authorized Buyers Marketplace API, use
 the [Authorized Buyers API contact form](https://support.google.com/authorizedbuyers/contact/contact_us_ab_api).
 
-License
--------
+## Contributing
+
+Contributions are encouraged! They may be submitted by forking this project and
+submitting a pull request through GitHub. To learn more, see the
+[Contributing guide](https://github.com/googleads/authorized-buyers-marketplace-api-samples/blob/main/CONTRIBUTING.md).
+
+## License
 
 Copyright 2021 Google LLC
 

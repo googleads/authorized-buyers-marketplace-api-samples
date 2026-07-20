@@ -43,6 +43,18 @@
       </roles>
       <timezone>-5</timezone>
     </developer>
+    <developer>
+      <id>jimmyconnors</id>
+      <name>Jimmy Connors</name>
+      <email>jimmyconnors@users.noreply.github.com</email>
+      <organization>Google</organization>
+      <organizationUrl>http://www.google.com</organizationUrl>
+      <roles>
+        <role>owner</role>
+        <role>developer</role>
+      </roles>
+      <timezone>-5</timezone>
+    </developer>
   </developers>
 
   <build>
@@ -58,7 +70,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
-        <version>1.1</version>
+        <version>3.5.0</version>
         <executions>
           <execution>
             <goals>
